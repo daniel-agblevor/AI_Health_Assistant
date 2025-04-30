@@ -1,24 +1,24 @@
 # 🩺 AI Healthcare Chatbot
 
-A secure, modern AI-powered chatbot for healthcare providers. This web-based assistant delivers real-time, natural language responses to health-related questions grounded in your institution’s internal documentation.
+A secure, modern AI-powered chatbot for healthcare providers. This assistant delivers real-time, natural language responses to health-related questions grounded in your institution’s internal documentation.
 
 ---
 
 ## 📌 Features
 
-- Natural language health-related query handling
-- Retrieval-augmented generation (RAG) using internal documents
-- Gemini 1.5 Flash integration for response generation
+- Natural language query handling
+- Retrieval-augmented generation (RAG)
+- Gemini 1.5 Flash for fast and smart responses
 - Session-based chat history with reset and loading states
-- Clear disclaimers and privacy policy
+- Clear disclaimers and privacy policy display
 
 ---
 
 ## 🧱 Tech Stack
 
-- **Frontend**: HTML, CSS, Vanilla JS
+- **Frontend**: HTML, CSS, JavaScript
 - **Backend**: Python (Flask)
-- **Embedding**: `sentence-transformers` (`all-MiniLM-L6-v2`)
+- **Embeddings**: `sentence-transformers` (`all-MiniLM-L6-v2`)
 - **Vector DB**: FAISS or ChromaDB
 - **LLM**: Gemini 1.5 via `google.generativeai`
 
@@ -32,12 +32,12 @@ healthcare-chatbot/
 │   ├── main.py               # Flask backend
 │   ├── ingest_docs.py        # Document parser & embedding
 │   ├── utils.py              # Helper functions
-│   └── docs/                 # Your internal .md documents
+│   └── docs/                 # Internal .md documents
 ├── frontend/
 │   ├── index.html            # Chat interface
 │   ├── style.css             # UI styling
 │   └── app.js                # Frontend logic
-├── .env.example              # Environment variables template
+├── .env.example              # Environment variable template
 └── README.md
 ```
 
@@ -52,7 +52,7 @@ git clone https://github.com/daniel-agblevor/AI_Health_Assistant.git
 cd healthcare-chatbot
 ```
 
-### 2. Install Dependencies (Backend)
+### 2. Install Backend Dependencies
 
 ```bash
 cd app
@@ -61,74 +61,61 @@ source venv/bin/activate  # or .\venv\Scripts\activate on Windows
 pip install -r requirements.txt
 ```
 
-### 3. Configure `.env`
+### 3. Configure Environment Variables
 
-Create a `.env` file in the `app/` directory based on `.env.example` and add your Gemini API key.
+Create a `.env` file inside the `app/` directory:
 
 ```env
 GOOGLE_API_KEY=your_gemini_api_key
 ```
 
-### 4. Ingest Internal Docs
+### 4. Ingest Internal Documents
 
-Place your `.md`, `.pdf`, `.txt`, `.csv`, or `.docx` files into the `app/docs/` folder, then run:
+Place your internal `.md`, `.pdf`, `.txt`, `.csv`, or `.docx` files into `app/docs/`, then run:
 
 ```bash
 python ingest_docs.py
 ```
 
-This will parse and embed your documents into FAISS or ChromaDB.
+This will embed the documents into the vector database for use during chat.
 
-### 5. Run Backend API
+### 5. Run the Backend Server
 
 ```bash
 python main.py
 ```
 
-### 6. Open Frontend
-
-Navigate to `frontend/index.html` in your browser or deploy with a static hosting service (e.g. Vercel, Netlify).
-
 ---
 
-## 🧪 Testing the App
+## 💬 Using the Chatbot
 
-- Use the chat box to enter questions.
-- Watch for live responses, formatted replies, and disclaimers.
-- Use the "Reset" button to start a new session.
+### Frontend Access
 
----
+Open the file `frontend/index.html` in your browser to use the chatbot.
 
-## 📦 Deployment
+### Functionalities
 
-You can use Docker or your preferred cloud service.
-
-### Docker
-
-```bash
-docker-compose up --build
-```
-
-Make sure your `.env` file is mounted properly in the backend container.
+- Enter a question into the text box
+- Click "Send" to receive a response
+- Use "Reset" to clear the chat history
+- Wait for the loading spinner while responses are generated
 
 ---
 
 ## 🔐 Compliance & Safety
 
-- ⚠️ No medical advice — responses include disclaimers.
-- ❌ No user data is stored or logged.
-- 🧾 No diagnoses or treatment suggestions are made.
-- 🔐 PII handling is strictly avoided.
+- ⚠️ No medical advice — only helpful suggestions and document references
+- ❌ No user data is stored or logged
+- 🔍 No diagnoses or treatment suggestions are provided
+- 🔐 No personal information is collected
 
 ---
 
-## ✅ Acceptance Criteria
+## ✅ Goals
 
-- 📄 Answers 90%+ of document-based queries accurately
-- ⚡ Responds in under 5 seconds
-- 📱 Works on all screen sizes
-- 🔐 Secure deployment
-- 🔧 Admin panel works for uploading and managing docs
+- Answers at least 90% of document-based questions accurately
+- Response time under 5 seconds
+- Fully responsive UI (mobile + desktop)
 
 ---
 
@@ -140,4 +127,4 @@ MIT License
 
 ## 🤝 Contributions
 
-PRs welcome. For feature requests or bugs, open an issue.
+Pull requests are welcome. For bugs or feature requests, please open an issue.

@@ -71,7 +71,7 @@ GOOGLE_API_KEY=your_gemini_api_key
 
 ### 4. Ingest Internal Documents
 
-Place your internal `.md`, `.pdf`, `.txt`, `.csv`, or `.docx` files into `app/docs/`, then run:
+Place your internal `.md` files into `app/docs/`, then run:
 
 ```bash
 python ingest_docs.py

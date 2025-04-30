@@ -4,6 +4,11 @@ const chatContainer = document.getElementById('chat-container');
 const loadingIndicator = document.getElementById('loading-indicator');
 const resetBtn = document.getElementById('reset-btn');
 
+// Include the Marked library (if not already in your HTML)
+const script = document.createElement('script');
+script.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+document.head.appendChild(script);
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const userText = input.value.trim();
@@ -37,7 +42,7 @@ resetBtn.addEventListener('click', () => {
 function appendMessage(text, sender) {
   const msg = document.createElement('div');
   msg.className = `message ${sender}`;
-  msg.innerText = text;
+  msg.innerHTML = marked.parse(text); // Use marked.parse to render Markdown
   chatContainer.appendChild(msg);
   chatContainer.scrollTop = chatContainer.scrollHeight;
 }

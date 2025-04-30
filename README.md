@@ -1,140 +1,155 @@
-# 🩺 AI Healthcare Assistant Chatbot
+---
 
-This is a secure, AI-powered chatbot that provides real-time responses to health-related inquiries based on internal healthcare documents. It uses **Google Gemini**, **Retrieval-Augmented Generation (RAG)**, and a custom frontend.
+```markdown
+# 🩺 AI Healthcare Chatbot
+
+A secure, modern AI-powered chatbot for healthcare providers. This web-based assistant delivers real-time, natural language responses to health-related questions grounded in your institution’s internal documentation.
 
 ---
 
-## 🚀 Features
+## 📌 Features
 
-- ✅ Accepts natural language health-related questions
-- ✅ Provides answers from internal healthcare documents (SOPs, policies, guidelines)
-- ✅ Uses Gemini AI for natural language generation
-- ✅ Responsive and user-friendly frontend
-- ✅ Secure, disclaimer-compliant, no PII logging
+- Natural language health-related query handling
+- Retrieval-augmented generation (RAG) using internal documents
+- Gemini 1.5 Flash integration for response generation
+- Session-based chat history with reset and loading states
+- Clear disclaimers and privacy policy
+- Admin panel for document upload and management
+- Fully dockerized and ready for deployment
 
 ---
 
-## 🧱 Project Structure
+## 🧱 Tech Stack
 
-```bash
-project-root/
-│
-├── healthcare-chatbot-backend/
-│   ├── app.py                   # Flask backend
-│   ├── ingest_docs.py           # Ingest and embed documents
-│   ├── utils/
-│   │   ├── file_loader.py       # File parsing utilities
-│   │   └── rag.py               # RAG logic (retrieval + generation)
-│   ├── docs/                    # Internal healthcare documents
-│   ├── requirements.txt         # Python dependencies
-│   ├── .env.example             # Environment config sample
-│   └── Procfile                 # For deployment (Heroku)
-│
-├── healthcare-chatbot-frontend/
-│   ├── index.html               # Web UI
-│   ├── style.css                # Styles
-│   └── app.js                   # Frontend logic
-│
-├── .gitignore
+- **Frontend**: HTML, CSS, Vanilla JS
+- **Backend**: Python (Flask)
+- **Embedding**: `sentence-transformers` (`all-MiniLM-L6-v2`)
+- **Vector DB**: FAISS or ChromaDB
+- **LLM**: Gemini 1.5 via `google.generativeai`
+- **Deployment**: Docker, Render/Vercel/AWS-ready
+
+---
+
+## 📂 Project Structure
+
+```
+healthcare-chatbot/
+├── app/
+│   ├── main.py               # Flask backend
+│   ├── ingest_docs.py        # Document parser & embedding
+│   ├── utils.py              # Helper functions
+│   └── docs/                 # Your internal .md documents
+├── frontend/
+│   ├── index.html            # Chat interface
+│   ├── style.css             # UI styling
+│   └── app.js                # Frontend logic
+├── Dockerfile
+├── docker-compose.yml
+├── .env.example              # Environment variables template
 └── README.md
 ```
 
 ---
 
-## ⚙️ Setup Instructions
+## 🚀 Setup Instructions
 
-### 1. Clone the Repository
+### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/your-username/ai-healthcare-chatbot.git
-cd ai-healthcare-chatbot
+git clone https://github.com/your-username/healthcare-chatbot.git
+cd healthcare-chatbot
 ```
 
-### 2. Set Up Backend
+### 2. Install Dependencies (Backend)
 
 ```bash
-cd healthcare-chatbot-backend
+cd app
 python -m venv venv
-source venv/bin/activate  # or `venv\Scripts\activate` on Windows
+source venv/bin/activate  # or .\venv\Scripts\activate on Windows
 pip install -r requirements.txt
 ```
 
-### 3. Configure Environment
+### 3. Configure `.env`
 
-```bash
-cp .env.example .env
-# Fill in your actual API keys and secrets in .env
+Create a `.env` file in the `app/` directory based on `.env.example` and add your Gemini API key.
+
+```env
+GOOGLE_API_KEY=your_gemini_api_key
 ```
 
-### 4. Prepare Internal Documents
+### 4. Ingest Internal Docs
 
-Place your `.pdf`, `.docx`, `.txt`, or `.csv` documents in the `docs/` folder, then run:
+Place your `.md`, `.pdf`, `.txt`, `.csv`, or `.docx` files into the `app/docs/` folder, then run:
 
 ```bash
 python ingest_docs.py
 ```
 
-This will parse, embed, and index the documents using FAISS.
+This will parse and embed your documents into FAISS or ChromaDB.
 
-### 5. Run the Backend
+### 5. Run Backend API
 
 ```bash
-python app.py
-# The API will be available at http://127.0.0.1:5000
+python main.py
 ```
 
-### 6. Run the Frontend
+### 6. Open Frontend
 
-Open `healthcare-chatbot-frontend/index.html` in a browser. It will call the backend at `/chat`.
+Navigate to `frontend/index.html` in your browser or deploy with a static hosting service (e.g. Vercel, Netlify).
 
 ---
 
-## 📬 API Endpoint
+## 🧪 Testing the App
 
-### `POST /chat`
-
-**Request Body:**
-
-```json
-{
-  "prompt": "What should I do if a patient shows signs of severe allergic reaction?"
-}
-```
-
-**Response:**
-
-```json
-{
-  "reply": "• Monitor airway, breathing, circulation\n• Administer epinephrine immediately..."
-}
-```
+- Use the chat box to enter questions.
+- Watch for live responses, formatted replies, and disclaimers.
+- Use the "Reset" button to start a new session.
 
 ---
 
 ## 📦 Deployment
 
-- Docker or cloud platforms like Render, Heroku, or EC2
-- Ensure your `.env` file is set up
-- Use HTTPS and proper CORS settings
+You can use Docker or your preferred cloud service.
+
+### Docker
+
+```bash
+docker-compose up --build
+```
+
+Make sure your `.env` file is mounted properly in the backend container.
 
 ---
 
-## 📌 Disclaimers
+## 🔐 Compliance & Safety
 
-- This chatbot does **not provide medical advice**
-- No data is stored or logged
-- It should be used for **educational and internal support only**
+- ⚠️ No medical advice — responses include disclaimers.
+- ❌ No user data is stored or logged.
+- 🧾 No diagnoses or treatment suggestions are made.
+- 🔐 PII handling is strictly avoided.
+
+---
+
+## ✅ Acceptance Criteria
+
+- 📄 Answers 90%+ of document-based queries accurately
+- ⚡ Responds in under 5 seconds
+- 📱 Works on all screen sizes
+- 🔐 Secure deployment
+- 🔧 Admin panel works for uploading and managing docs
+
+---
+
+## 📖 License
+
+MIT License
 
 ---
 
 ## 🤝 Contributions
 
-Pull requests are welcome! Please fork the repo and open an issue or PR for discussion.
-
----
-
-## 📄 License
-
-MIT License
+PRs welcome. For feature requests or bugs, open an issue.
 
 ```
+
+---

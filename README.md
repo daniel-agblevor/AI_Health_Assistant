@@ -1,6 +1,3 @@
----
-
-```markdown
 # 🩺 AI Healthcare Chatbot
 
 A secure, modern AI-powered chatbot for healthcare providers. This web-based assistant delivers real-time, natural language responses to health-related questions grounded in your institution’s internal documentation.
@@ -56,7 +53,7 @@ healthcare-chatbot/
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/your-username/healthcare-chatbot.git
+git clone https://github.com/daniel-agblevor/AI_Health_Assistant.git
 cd healthcare-chatbot
 ```
 

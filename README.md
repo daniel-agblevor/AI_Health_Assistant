@@ -11,8 +11,6 @@ A secure, modern AI-powered chatbot for healthcare providers. This web-based ass
 - Gemini 1.5 Flash integration for response generation
 - Session-based chat history with reset and loading states
 - Clear disclaimers and privacy policy
-- Admin panel for document upload and management
-- Fully dockerized and ready for deployment
 
 ---
 
@@ -23,7 +21,6 @@ A secure, modern AI-powered chatbot for healthcare providers. This web-based ass
 - **Embedding**: `sentence-transformers` (`all-MiniLM-L6-v2`)
 - **Vector DB**: FAISS or ChromaDB
 - **LLM**: Gemini 1.5 via `google.generativeai`
-- **Deployment**: Docker, Render/Vercel/AWS-ready
 
 ---
 
@@ -40,8 +37,6 @@ healthcare-chatbot/
 │   ├── index.html            # Chat interface
 │   ├── style.css             # UI styling
 │   └── app.js                # Frontend logic
-├── Dockerfile
-├── docker-compose.yml
 ├── .env.example              # Environment variables template
 └── README.md
 ```
@@ -146,7 +141,3 @@ MIT License
 ## 🤝 Contributions
 
 PRs welcome. For feature requests or bugs, open an issue.
-
-```
-
----

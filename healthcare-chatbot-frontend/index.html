@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HealthAI Chatbot</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <h1>HealthAI Chatbot</h1>
+  </header>
+
+  <main>
+    <div id="chat-container"></div>
+
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Ask a health-related question..." autocomplete="off" required />
+      <button type="submit">Send</button>
+      <button type="button" id="reset-btn">Reset</button>
+    </form>
+
+    <div id="loading-indicator" class="hidden">⏳ Processing...</div>
+  </main>
+
+  <footer>
+    <p>This is not medical advice. For emergencies, contact a healthcare professional.</p>
+    <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

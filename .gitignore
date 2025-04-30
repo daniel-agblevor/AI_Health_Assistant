@@ -1,0 +1,30 @@
+# Python
+*.pyc
+__pycache__/
+*.pkl
+*.faiss
+*.log
+
+# Virtual environment
+venv/
+ENV/
+.env
+.env.*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# Node/Frontend
+node_modules/
+dist/
+
+# Internal documents (optional – if documents are sensitive or large)
+healthcare-chatbot-backend/docs/
+
+# Deployment
+*.sqlite3
+*.db

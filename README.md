@@ -1,130 +1,141 @@
-# 🩺 AI Healthcare Chatbot
 
-A secure, modern AI-powered chatbot for healthcare providers. This assistant delivers real-time, natural language responses to health-related questions grounded in your institution’s internal documentation.
+# 🩺 AI Health Assistant
+
+A secure, AI-powered health chatbot that uses Retrieval-Augmented Generation (RAG) to deliver intelligent, real-time responses grounded in internal clinical documentation. This project showcases applied Gen AI engineering, including vector search, document embedding, and integration with Gemini 1.5 via Google’s Generative AI SDK.
 
 ---
 
-## 📌 Features
+## 🚀 Live Demo  
+**Hosted Frontend:** [AI Health Assistant](https://mellow-bunny-240a24.netlify.app/)
 
-- Natural language query handling
-- Retrieval-augmented generation (RAG)
-- Gemini 1.5 Flash for fast and smart responses
-- Session-based chat history with reset and loading states
-- Clear disclaimers and privacy policy display
+---
+
+## 💡 Project Purpose  
+
+This project was built to demonstrate practical experience in:  
+- End-to-end RAG architecture  
+- Embedding-based search using FAISS  
+- Real-time LLM integration with Google's Gemini 1.5  
+- Secure, compliant chatbot design in a healthcare context  
+
+It simulates how modern AI assistants can support clinicians and patients with internal knowledge without exposing or storing user data.
+
+---
+
+## ⚙️ Core Features
+
+- **LLM-Backed Natural Language Understanding**: User queries processed via Gemini 1.5 Flash.
+- **Retrieval-Augmented Generation (RAG)**: Combines vector similarity search with prompt augmentation to ground responses.
+- **Custom Document Ingestion Pipeline**: Markdown-based internal clinical resources parsed, embedded, and indexed.
+- **FAISS Vector Search**: Enables fast retrieval over dense sentence-transformer embeddings.
+- **Frontend Chat Interface**: Lightweight, responsive UI for real-time interactions.
+- **Stateless & Secure**: No user data stored. Designed with HIPAA/GDPR in mind.
 
 ---
 
 ## 🧱 Tech Stack
 
-- **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Python (Flask)
-- **Embeddings**: `sentence-transformers` (`all-MiniLM-L6-v2`)
-- **Vector DB**: FAISS or ChromaDB
-- **LLM**: Gemini 1.5 via `google.generativeai`
+| Layer | Technology |
+|-------|------------|
+| LLM | Gemini 1.5 (via `google.generativeai`) |
+| Embeddings | `sentence-transformers` (`all-MiniLM-L6-v2`) |
+| Vector Store | FAISS |
+| Backend | Python, Flask |
+| Frontend | HTML, CSS, JavaScript |
 
 ---
 
-## 📂 Project Structure
+## 🗂️ Project Structure
 
 ```
-healthcare-chatbot/
-├── app/
-│   ├── main.py               # Flask backend
-│   ├── ingest_docs.py        # Document parser & embedding
-│   ├── utils.py              # Helper functions
-│   └── docs/                 # Internal .md documents
+AI_Health_Assistant/
+├── backend/
+│   ├── app/
+│   │   ├── main.py           # Chat API endpoint
+│   │   ├── ingest_docs.py    # Document parsing & vector storage
+│   │   ├── vector_store/     # FAISS index + metadata
+│   │   └── docs/             # Knowledge base (.md files)
+│   ├── requirements.txt
+│   └── Procfile
 ├── frontend/
-│   ├── index.html            # Chat interface
-│   ├── style.css             # UI styling
-│   └── app.js                # Frontend logic
-├── .env.example              # Environment variable template
+│   ├── index.html
+│   ├── style.css
+│   └── app.js
 └── README.md
 ```
 
 ---
 
-## 🚀 Setup Instructions
+## 🛠️ Setup Instructions
 
-### 1. Clone the Repo
-
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/daniel-agblevor/AI_Health_Assistant.git
-cd healthcare-chatbot
+cd AI_Health_Assistant
 ```
 
-### 2. Install Backend Dependencies
-
+### 2. Backend Setup
 ```bash
-cd app
+cd backend
 python -m venv venv
-source venv/bin/activate  # or .\venv\Scripts\activate on Windows
+source venv/bin/activate  # (Windows: venv\Scripts\activate)
 pip install -r requirements.txt
 ```
 
-### 3. Configure Environment Variables
-
-Create a `.env` file inside the `app/` directory:
-
+### 3. Configure Environment
+Create an `.env` file in the `app/` directory with:
 ```env
 GOOGLE_API_KEY=your_gemini_api_key
 ```
 
 ### 4. Ingest Internal Documents
-
-Place your internal `.md` files into `app/docs/`, then run:
-
+Add your `.md` files to `app/docs/`, then:
 ```bash
-python ingest_docs.py
+python app/ingest_docs.py
 ```
 
-This will embed the documents into the vector database for use during chat.
-
-### 5. Run the Backend Server
-
+### 5. Start the Backend Server
 ```bash
-python main.py
+python app/main.py
 ```
 
----
-
-## 💬 Using the Chatbot
-
-### Frontend Access
-
-Open the file `frontend/index.html` in your browser to use the chatbot.
-
-### Functionalities
-
-- Enter a question into the text box
-- Click "Send" to receive a response
-- Use "Reset" to clear the chat history
-- Wait for the loading spinner while responses are generated
+### 6. Frontend
+Open `frontend/index.html` in a browser to access the UI.
 
 ---
 
-## 🔐 Compliance & Safety
+## ✅ Key Engineering Highlights
 
-- ⚠️ No medical advice — only helpful suggestions and document references
-- ❌ No user data is stored or logged
-- 🔍 No diagnoses or treatment suggestions are provided
-- 🔐 No personal information is collected
-
----
-
-## ✅ Goals
-
-- Answers at least 90% of document-based questions accurately
-- Response time under 5 seconds
-- Fully responsive UI (mobile + desktop)
+- **RAG Pipeline**: Built from scratch with Flask, using FAISS for top-K document retrieval, then injecting relevant context into Gemini prompts.
+- **Custom Embedding Workflow**: Efficiently processes unstructured clinical markdown using sentence-transformers.
+- **LLM Integration**: Programmatic use of Gemini 1.5 Flash with streamed response parsing.
+- **Secure, Stateless Architecture**: No PII stored or logged. Fully GDPR/HIPAA aligned.
 
 ---
 
-## 📖 License
+## 🧠 What I Gained from Building This
 
-MIT License
+- ✅ **Hands-on RAG Architecture**: Implemented retrieval-augmented generation from scratch, integrating dense embeddings, vector similarity search, and prompt engineering.
+- ✅ **LLM API Mastery**: Integrated Gemini 1.5 Flash with secure key management and response handling using Google's `generativeai` SDK.
+- ✅ **Efficient Document Embedding Pipelines**: Built a scalable ingestion system for Markdown files using `sentence-transformers` and FAISS.
+- ✅ **Frontend-Backend Integration**: Delivered a seamless chat experience by connecting a custom frontend to a Flask backend with real-time response rendering.
+- ✅ **Security-Conscious Development**: Ensured GDPR and HIPAA alignment by keeping the architecture stateless and avoiding data persistence or logging.
+- ✅ **Deployment-Ready Workflow**: Structured for deployment with clearly separated concerns, Procfile support, and environment-based config.
+
+---
+
+## 🔐 Notes on Safety & Limitations
+
+- This is an AI assistant prototype for demonstration only.
+- It does **not provide medical advice or diagnosis**.
+- Responses are generated from internal documentation only—no external API lookups or data persistence.
+
+---
+
+## 📜 License
+MIT License. See `LICENSE` file.
 
 ---
 
 ## 🤝 Contributions
-
-Pull requests are welcome. For bugs or feature requests, please open an issue.
+Pull requests are welcome. For issues or enhancements, please open a ticket.

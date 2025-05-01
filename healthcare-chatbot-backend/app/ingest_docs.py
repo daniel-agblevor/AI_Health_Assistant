@@ -3,11 +3,11 @@ import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from utils.file_loader import load_markdown_files
+from core.file_loader import load_markdown_files
 from pathlib import Path
 
 # Load and chunk
-docs = load_markdown_files("../docs")
+docs = load_markdown_files("./docs")
 print(f"Number of loaded documents: {len(docs)}")
 print(f"First few loaded documents: {docs[:2]}")
 splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)

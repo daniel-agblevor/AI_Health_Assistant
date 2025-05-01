@@ -3,6 +3,7 @@ from flask_cors import CORS
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
+from core.rag import retrieve_relevant_chunks
 
 
 load_dotenv() # Load environment variables from .env file
@@ -24,7 +25,7 @@ def chat():
     context = retrieve_relevant_chunks(user_query)
     print(f"Retrieved context:\n{context}") # Add this print statement
     full_prompt = f"""
-You are a healthcare assistant at this organization. Keep your replies short — no more than 200 words.
+You are a healthcare assistant, Ella, at DanielAGB Medical Centre that offers basic health services. Keep your replies short — no more than 200 words.
 with this:
 context: {context}
 question: {user_query}

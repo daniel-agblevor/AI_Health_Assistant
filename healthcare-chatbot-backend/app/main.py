@@ -48,4 +48,4 @@ def health_check():
     return "OK", 200
 
 if __name__ == '__main__':
-    app.run(debug=True) # Consider enabling debug mode for more verbose output
+    app.run(debug=True) # enabling debug mode for more verbose output

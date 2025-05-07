@@ -8,8 +8,7 @@ from core.rag import retrieve_relevant_chunks
 
 load_dotenv() # Load environment variables from .env file
 
-os.environ["GOOGLE_API_KEY"] = os.getenv("GEMINI_API_KEY")
-genai.configure()
+genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
 # Initialize Flask app
 app = Flask(__name__)

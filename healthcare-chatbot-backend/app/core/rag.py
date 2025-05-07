@@ -6,8 +6,8 @@ from sentence_transformers import SentenceTransformer
 def retrieve_relevant_chunks(query, top_k=3):
     index = None
     metadata = []
-    index_path = "vector_store/faiss_index.idx"
-    metadata_path = "vector_store/metadata.json"
+    index_path = "../vector_store/faiss_index.idx"
+    metadata_path = "../vector_store/metadata.json"
     model_name = "all-MiniLM-L6-v2"
 
     print(f"\nRetrieving relevant chunks for query: '{query}'")

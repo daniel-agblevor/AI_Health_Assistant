@@ -3,7 +3,7 @@ from flask_cors import CORS
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
-import core.rag.retrieve_relevant_chunks as retrieve_relevant_chunks
+from core_proc.rag import retrieve_relevant_chunks
 
 
 load_dotenv() # Load environment variables from .env file
